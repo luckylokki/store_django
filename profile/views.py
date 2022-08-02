@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 user_data = {
+    'id': 1,
     'username': 'lokki',
     'first_name': 'Vadim',
     'last_name': 'Prokopenko',
