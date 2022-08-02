@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Product {{ product }}{% endblock %}
+{% block content %}
+    <style>
+
+    </style>
+
+    <div class="card">
+  <img src="{{ image }}" alt="{{ slug }}" style="width:100%">
+  <center><h2>Product Name: {{ product }}</h2></center>
+  <p><b>Memory:</b> {{memory}}</p>
+  <p><b>Available:</b> {{available}}</p>
+  <p class="price">{{price}}</p>
+  <p>{{ description }}</p>
+      {% if available %}
+        <button class="button">Buy</button>
+    {% else %}
+        <button class="button" disabled>Buy</button>
+    {% endif %}
+</div>
+
+{% endblock content %}
