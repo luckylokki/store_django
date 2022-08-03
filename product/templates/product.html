@@ -2,8 +2,8 @@
 {% block title %}Product {{ product }}{% endblock %}
 {% block content %}
 </div>
-<section style="background-color: #eee;">
-  <div class="container py-5">
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container py-5 h-100">
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6 col-xl-4">
         <div class="card text-black">
@@ -29,9 +29,13 @@
             </div>
                 <p>{{ description }}</p>
       {% if available %}
-        <button class="button">Buy</button>
+          <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark" onclick="location.href='product/{{item.slug}}';">
+                Buy
+          </button>
     {% else %}
-        <button class="button" disabled>Buy</button>
+          <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark" onclick="location.href='product/{{item.slug}}';" disabled>
+                Buy
+          </button>
     {% endif %}
           </div>
         </div>
