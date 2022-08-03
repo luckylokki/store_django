@@ -40,3 +40,10 @@ def product_page(request: HttpRequest, product: str) -> HttpResponse:
         if item['slug'] == product:
             context = item
     return render(request, 'product.html',context)
+
+
+def homepage(request: HttpRequest) -> HttpResponse:
+    context = []
+    for item in product_catalog:
+        context.append({'product': item['product'], 'slug': item['slug']})
+    return render(request, 'products_list.html', {'catalog': context})

@@ -19,7 +19,7 @@ from store_django import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.homepage),
+    path('', include('product.urls')),
     path('product/<slug:product>', include('product.urls')),
-    path('profile/', include('profile.urls'))
+    path('profile/', include('uprofile.urls')),
 ]

@@ -197,9 +197,11 @@ button:disabled {
 }
     </style>
 </head>
-{% include 'navbar.html' with username='lokki' %}
+{% include 'navbar.html' with usernames=username %}
 <body>
+
     {% block content %}
+
     {% endblock content%}
 </body>
 </html>
