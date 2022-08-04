@@ -2,16 +2,10 @@
 {% block title %}Electronic Shop{% endblock %}
 {% block content %}
 
-{% for item in catalog %}
-
-
-
-
-
-
-<section style="background-color: #eee;">
+<section class="vh-100" style="background-color: #eee;">
   <div class="container py-5">
     <div class="row">
+        {% for item in catalog %}
       <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
         <div class="card">
           <div class="d-flex justify-content-between p-3">
@@ -36,75 +30,14 @@
                 <i class="fa fa-star"></i>
               </div>
             </div>
-              <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark" onclick="location.href='product/{{item.slug}}';">
+          </div>
+                       <button style="margin: 5px" type="button" class="btn btn-dark btn-lg btn-block" onclick="location.href='product/{{item.slug}}';">
                 Learn more
               </button>
-          </div>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
-        <div class="card">
-          <div class="d-flex justify-content-between p-3">
-
-          </div>
-          <img src="{{ item.image }}"
-            class="card-img-top" alt="Laptop" />
-          <div class="card-body">
-
-            <div class="d-flex justify-content-between mb-3">
-              <h5 class="mb-0">{{  item.product }}</h5>
-              <h5 class="text-dark mb-0">{{ item.memory }}</h5>
-            </div>
-
-            <div class="d-flex justify-content-between mb-2">
-              <p class="text-muted mb-0">Available: <span class="fw-bold">{{ item.available }}</span></p>
-              <div class="ms-auto text-warning">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-            </div>
-              <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark" onclick="location.href='product/{{item.slug}}';">
-                Learn more
-              </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
-        <div class="card">
-          <div class="d-flex justify-content-between p-3">
-
-          </div>
-          <img src="{{ item.image }}"
-            class="card-img-top" alt="Laptop" />
-          <div class="card-body">
-
-            <div class="d-flex justify-content-between mb-3">
-              <h5 class="mb-0">{{  item.product }}</h5>
-              <h5 class="text-dark mb-0">{{ item.memory }}</h5>
-            </div>
-
-            <div class="d-flex justify-content-between mb-2">
-              <p class="text-muted mb-0">Available: <span class="fw-bold">{{ item.available }}</span></p>
-              <div class="ms-auto text-warning">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-              </div>
-            </div>
-              <button type="button" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark" onclick="location.href='product/{{item.slug}}';">
-                Learn more
-              </button>
-          </div>
-        </div>
-      </div>
-    </div>
+      </div>{% endfor %}
   </div>
 </section>
 
-{% endfor %}
+
 {% endblock content %}
