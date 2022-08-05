@@ -20,5 +20,5 @@ from store_django import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('product.urls')),
-    path('profile/', include('uprofile.urls')),
+    path('', include('uprofile.urls')),
 ]
