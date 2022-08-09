@@ -11,6 +11,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=64)
     name = models.CharField(max_length=64)
     memory = models.CharField(max_length=12)
+    discount_available = models.BooleanField(default=False)
     discount = models.CharField(max_length=12)
     available = models.BooleanField(default=False)
     image_url = models.URLField(max_length=200)
