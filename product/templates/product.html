@@ -2,7 +2,7 @@
 {% block title %}Product {{ product.name }}{% endblock %}
 {% block content %}
 </div>
-<section class="vh-100" style="background-color: #eee; margin-top: 50px;">
+<section class="vh-100" style="background-color: #eee;">
   <div class="container py-5 h-100">
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6 col-xl-4">
@@ -22,11 +22,11 @@
               </div>
             {% if not product.available %}
               <div class="d-flex justify-content-between">
-                <span>Available for purchase</span><span class="fw-bold text-danger">{{ product.available }}</span>
+                <span>Available for purchase</span><span class="fw-bold badge rounded-pill bg-danger">{{ product.available }}</span>
               </div>
             {% else %}
               <div class="d-flex justify-content-between">
-                <span>Available for purchase</span><span class="fw-bold text-success">{{ product.available }}</span>
+                <span>Available for purchase</span><span class="fw-bold badge rounded-pill bg-success">{{ product.available }}</span>
               </div>
             {% endif %}
                 {% if product.discount_available %}

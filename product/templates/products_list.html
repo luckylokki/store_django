@@ -2,51 +2,58 @@
 {% block title %}Electronic Shop{% endblock %}
 {% block content %}
 
-<section class="vh-100" style="background-color: #eee; margin-top: 50px;">
-  <div class="container py-5">
-    <div class="row">
-        {% for item in product_list %}
-      <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
-        <div class="card">
-          <div class="d-flex justify-content-between p-3">
+    <section class="vh-100" style="background-color: #eee;">
+        <div class="container py-5">
+            <div class="row">
+                {% for item in product_list %}
 
-          </div>
-          <img src="{{ item.image_url }}"
-            class="card-img-top" alt="Laptop" />
-          <div class="card-body">
+                    <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+                        <div class="card">
+                            <div class="d-flex justify-content-between p-3">
 
-            <div class="d-flex justify-content-between">
-              <p class="small"><a href="#!" class="text-muted">Category: {{ item.category }}</a></p>
-            </div>
+                            </div>
+                            <img src="{{ item.image_url }}"
+                                 class="card-img-top" alt="Laptop"/>
+                            <div class="card-body">
 
-            <div class="d-flex justify-content-between mb-3">
-              <h5 class="mb-0">{{ item.name }}</h5>
-            </div>
-            <div class="d-flex justify-content-between mb-2">
-              <p class="text-muted mb-0">Memory: <span class="fw-bold">{{ item.memory }} Gb's</span></p>
-            </div>
-              {% if not item.available %}
-            <div class="d-flex justify-content-between mb-2">
-              <p class="text-muted mb-0">Available for Purchase: <span class="fw-bold text-danger">{{ item.available }}</span></p>
-              <span class="text-warning">Not in stock</span>
-            </div>
-              {% else %}
-            <div class="d-flex justify-content-between mb-2">
-              <p class="text-muted mb-0">Available for Purchase: <span class="fw-bold text-success">{{ item.available }}</span></p>
-            </div>
-              {% endif %}
-            <div class="d-flex justify-content-between mb-2">
-              <p class="text-muted mb-0">Quantity: <span class="fw-bold">{{ item.quantity }}</span></p>
-            </div>
+                                <div class="d-flex justify-content-between">
+                                    <p class="small"><a href="#!" class="text-muted">Category: {{ item.category }}</a>
+                                    </p>
+                                </div>
 
-          </div>
-                       <button style="margin: 5px" type="button" class="btn btn-dark btn-lg btn-block" onclick="location.href='product/{{item.slug}}';">
-                Learn more
-              </button>
-        </div>
-      </div>{% endfor %}
-  </div>
-</section>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">{{ item.name }}</h5>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <p class="text-muted mb-0">Memory: <span
+                                            class="fw-bold">{{ item.memory }} Gb's</span></p>
+                                </div>
+                                {% if not item.available %}
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <p class="text-muted mb-0">Available for Purchase: <span
+                                                class="fw-bold badge rounded-pill bg-danger">{{ item.available }}</span>
+                                        </p>
+                                        <span class="text-warning">Not in stock</span>
+                                    </div>
+                                {% else %}
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <p class="text-muted mb-0">Available for Purchase: <span
+                                                class="fw-bold badge rounded-pill bg-success">{{ item.available }}</span>
+                                        </p>
+                                    </div>
+                                {% endif %}
+                                <div class="d-flex justify-content-between mb-2">
+                                    <p class="text-muted mb-0">Quantity: <span
+                                            class="fw-bold">{{ item.quantity }}</span></p>
+                                </div>
 
-
+                            </div>
+                            <button style="margin: 5px" type="button" class="btn btn-dark btn-lg btn-block"
+                                    onclick="location.href='product/{{ item.slug }}';">
+                                Learn more
+                            </button>
+                        </div>
+                    </div>{% endfor %}
+            </div>
+    </section>
 {% endblock content %}
