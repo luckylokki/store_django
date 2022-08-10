@@ -2,7 +2,33 @@
 {% block title %}Electronic Shop{% endblock %}
 {% block content %}
 
+    <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Category</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Memory</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">        <div>
+{% for cat in category_list %}
+                            <div class="d-flex justify-content-between">
+                                <p class="small"><a href="{% url "category_filter" category=cat.id %}" class="text-muted">Category: {{ cat.name }}</a>
+                                </p>
+                            </div>
+{% endfor %}
+</div></div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+      {% for mem in memory_list %}
+                            <div class="d-flex justify-content-between">
+                                <p class="small"><a href="{% url "memory_filter" memory=mem.memory %}" class="text-muted">Memory: {{ mem.memory }}</a>
+                                </p>
+                            </div>
+{% endfor %}</div>
+
+</div>
+
 <section class="vh-100" style="background-color: #eee;">
+
     <div class="container py-5">
         <div class="row">
             {% for item in product_list %}
