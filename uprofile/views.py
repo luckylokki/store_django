@@ -48,7 +48,9 @@ def signout_view(request: HttpRequest) -> HttpResponse:
     return HttpResponseRedirect(reverse_lazy("product_list"))
 
 
-def deactivate_user_view(request: HttpRequest) -> HttpResponse:
-    User.objects.update(is_active=False)
+def deactivate_user_view(request: HttpRequest, username_d: str) -> HttpResponse:
+    user = User.objects.get(username=username_d)
+    user.is_active = False
+    user.save()
     logout(request)
     return HttpResponseRedirect(reverse_lazy("signin"))
