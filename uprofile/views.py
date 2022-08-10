@@ -45,8 +45,7 @@ def signup_view(request: HttpRequest) -> HttpResponse:
 
 def signout_view(request: HttpRequest) -> HttpResponse:
     logout(request)
-    homepage = reverse_lazy("product_list")
-    return HttpResponseRedirect(homepage)
+    return HttpResponseRedirect(reverse_lazy("product_list"))
 
 
 def deactivate_user_view(request: HttpRequest) -> HttpResponse:
