@@ -1,6 +1,6 @@
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render
-from product.models import Product,Category
+from product.models import Product, Category
 
 
 def product_page_details(request: HttpRequest, slug: str) -> HttpResponse:
