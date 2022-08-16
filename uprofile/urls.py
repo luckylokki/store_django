@@ -7,6 +7,6 @@ urlpatterns = [
     path('profile/', user_profile, name='user_profile'),
     path('signin/', signin_view, name='signin'),
     path('signout/', signout_view, name='signout'),
-    path('signup', signup_view, name='signup'),
-    path('profile/deactivate/<str:username_d>', deactivate_user_view, name='deactivate')
+    path('signup/', signup_view, name='signup'),
+    path('profile/deactivate/', deactivate_user_view, name='deactivate')
 ]

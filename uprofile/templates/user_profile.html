@@ -18,7 +18,7 @@
                                 <p><b>Name: </b>{{ user.first_name }}</p>
                                 <p><b>Email: </b>{{ user.email }}</p>
                                 <p><b>Deactivate your Profile: </b>
-                                    <button onclick="location.href='{% url "deactivate" username_d=user.username %}';"
+                                    <button onclick="location.href='{% url "deactivate" %}';"
                                             class="btn btn-dark btn-lg btn-block" type="button">Deactivate
                                     </button>
                                 </p>

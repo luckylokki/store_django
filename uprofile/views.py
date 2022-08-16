@@ -1,11 +1,12 @@
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
 
-
+@login_required(login_url='signin')
 def user_profile(request: HttpRequest) -> HttpResponse:
     return render(request, 'user_profile.html')
 
@@ -48,9 +49,10 @@ def signout_view(request: HttpRequest) -> HttpResponse:
     return HttpResponseRedirect(reverse_lazy("product_list"))
 
 
-def deactivate_user_view(request: HttpRequest, username_d: str) -> HttpResponse:
-    user = User.objects.get(username=username_d)
-    user.is_active = False
-    user.save()
-    logout(request)
-    return HttpResponseRedirect(reverse_lazy("signin"))
+@login_required(login_url='signin')
+def deactivate_user_view(request: HttpRequest) -> HttpResponse:
+    if request.user.is_authenticated:
+        request.user.is_active = False
+        request.user.save()
+        logout(request)
+        return HttpResponseRedirect(reverse_lazy("signin"))
