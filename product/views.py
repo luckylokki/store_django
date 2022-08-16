@@ -1,6 +1,6 @@
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render
-from product.models import Product,Category
+from product.models import Product, Category
 
 
 def product_page_details(request: HttpRequest, slug: str) -> HttpResponse:
@@ -18,18 +18,12 @@ def product_list_view(request: HttpRequest) -> HttpResponse:
 
 
 def category_filter(request: HttpRequest, category: int) -> HttpResponse:
-    try:
-        context = {"product_list": Product.objects.filter(category=category), "category_list": Category.objects.all(),
+    context = {"product_list": Product.objects.filter(category=category), "category_list": Category.objects.all(),
                "memory_list": Product.objects.all().values("memory").distinct()}
-        return render(request, "products_list.html", context)
-    except Product.DoesNotExist:
-        raise Http404("Category not found")
+    return render(request, "products_list.html", context)
 
 
 def memory_filter(request: HttpRequest, memory: str) -> HttpResponse:
-    try:
-        context = {"product_list": Product.objects.filter(memory=memory), "category_list": Category.objects.all(),
+    context = {"product_list": Product.objects.filter(memory=memory), "category_list": Category.objects.all(),
                "memory_list": Product.objects.all().values("memory").distinct()}
-        return render(request, "products_list.html", context)
-    except Product.DoesNotExist:
-        raise Http404("Category not found")
+    return render(request, "products_list.html", context)
