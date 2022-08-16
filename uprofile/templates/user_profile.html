@@ -1,39 +1,45 @@
 {% extends "base.html" %}
 {% block title %}{{ username }} Profile{% endblock %}
 {% block content %}
-<section class="vh-100" style="background-color: #eee;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-12 col-xl-4">
+    <section class="vh-100" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-12 col-xl-4">
 
-        <div class="card" style="border-radius: 15px;">
-          <div class="card-body text-center">
-            <div class="mt-3 mb-4">
-              <img src="https://www.w3schools.com/w3images/team2.jpg"
-                 style="width: 100%;" />
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body text-center">
+                            <div class="mt-3 mb-4">
+                                <img src="https://www.w3schools.com/w3images/team2.jpg"
+                                     style="width: 100%;"/>
+                            </div>
+                            <h4 class="mb-2">{{ user.username }}</h4>
+                            <div class="mb-4 pb-2">
+                                <p><b>Surname: </b>{{ user.last_name }}</p>
+                                <p><b>Name: </b>{{ user.first_name }}</p>
+                                <p><b>Email: </b>{{ user.email }}</p>
+                                <p><b>Deactivate your Profile: </b>
+                                    <button onclick="location.href='{% url "deactivate" %}';"
+                                            class="btn btn-dark btn-lg btn-block" type="button">Deactivate
+                                    </button>
+                                </p>
+                            </div>
+                            <div style="margin: 24px 0;">
+                                <a href="#"><i class="fa fa-dribbble"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                            </div>
+
+                        </div>
+
+                        <button style="margin: 5px;" onclick="location.href='mailto:{{ email }}';"
+                                class="btn btn-dark btn-lg btn-block">Contact
+                        </button>
+
+                    </div>
+
+                </div>
             </div>
-            <h4 class="mb-2">{{ username }}</h4>
-            <div class="mb-4 pb-2">
-            <p><b>Surname: </b>{{ last_name }}</p>
-            <p><b>Name: </b>{{ first_name }}</p>
-            <p><b>Education: </b>{{ university }}</p>
-            <p><b>Age: </b>{{ age }}</p>
-            </div>
-                  <div style="margin: 24px 0;">
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                  </div>
-
-          </div>
-
-            <button style="margin: 5px;" onclick="location.href='mailto:{{ email }}';" class="btn btn-dark btn-lg btn-block">Contact</button>
-
         </div>
-
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 {% endblock content %}

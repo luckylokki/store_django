@@ -10,19 +10,27 @@
         <a class="nav-link" href="/">Home<span class="sr-only"></span></a>
       </li>
     </ul>
-
+    {% if request.user.is_authenticated %}
     <ul class="navbar-nav justify-content-end">
            <div class="btn-group">
-            <button type="button" class="btn btn-outline-warning nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             {{ user }} Profile
+            <button type="button" class="btn btn-outline-warning nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">User:
+             {{ user }}
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="/profile">{{ user }} Profile</a>
+              <a class="dropdown-item" href="{% url "user_profile" %}">{{ user }} Profile</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#"><font color="red">Logout &raquo;</font></a>
+              <a class="dropdown-item" href="{% url "signout" %}"><font color="red">Logout &raquo;</font></a>
             </div>
           </div>
     </ul>
+    {% else %}
+    <ul class="navbar-nav mr-right">
+    <li class="nav-item"><a class="nav-link" href="{% url "signin" %}"><span class="btn btn-outline-info my-2 my-sm-0">Login &raquo;</span></a></li>
+    </ul>
+    <ul class="navbar-nav mr-right">
+    <li class="nav-item"><a class="nav-link" href="{% url "signup" %}"><span class="btn btn-outline-info my-2 my-sm-0">SignUp &raquo;</span></a></li>
+    </ul>
+    {% endif %}
   </div>
 </nav>
 
