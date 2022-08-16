@@ -51,8 +51,7 @@ def signout_view(request: HttpRequest) -> HttpResponse:
 
 @login_required(login_url='signin')
 def deactivate_user_view(request: HttpRequest) -> HttpResponse:
-    if request.user.is_authenticated:
-        request.user.is_active = False
-        request.user.save()
-        logout(request)
-        return HttpResponseRedirect(reverse_lazy("signin"))
+    request.user.is_active = False
+    request.user.save()
+    logout(request)
+    return HttpResponseRedirect(reverse_lazy("signin"))
