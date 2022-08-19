@@ -55,3 +55,4 @@ def deactivate_user_view(request: HttpRequest) -> HttpResponse:
     request.user.save()
     logout(request)
     return HttpResponseRedirect(reverse_lazy("signin"))
+
