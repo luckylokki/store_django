@@ -14,12 +14,32 @@
                             </div>
                             <h4 class="mb-2">{{ user.username }}</h4>
                             <div class="mb-4 pb-2">
-                                <p><b>Surname: </b>{{ user.last_name }}</p>
-                                <p><b>Name: </b>{{ user.first_name }}</p>
-                                <p><b>Email: </b>{{ user.email }}</p>
-                                <p>
-                                    <button onclick="location.href='{% url "edit_profile" %}';"
-                                            class="btn btn-success btn-md btn-block" type="button">Edit Profile
+                                <form method="post">
+                                    {% csrf_token %}
+
+                                    {% if message %}
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% endif %}
+                                    <table>{{ form.as_table }}</table>
+                                    <br>
+                                    <button class="btn btn-success btn-md btn-block" type="submit">Save Changes</button>
+
+                                </form>
+
+                            </div>
+                            <div class="mb-4 pb-2">
+                                <p><b>Change User Password: </b>
+                                    <button onclick="location.href='{% url "change_password" %}';"
+                                            class="btn btn-dark btn-sm btn-block" type="button">Change
+                                    </button>
+                                </p>
+                            </div>
+                            <div class="mb-4 pb-2">
+                                <p><b>Deactivate your Profile: </b>
+                                    <button onclick="location.href='{% url "deactivate" %}';"
+                                            class="btn btn-dark btn-sm btn-block" type="button">Deactivate
                                     </button>
                                 </p>
                             </div>
