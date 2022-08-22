@@ -10,5 +10,5 @@ urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('profile/deactivate/', deactivate_user_view, name='deactivate'),
     path('profile/edit/', user_profile_edit, name='edit_profile'),
-path('profile/change_password/', change_profile_password, name='change_password')
+    path('profile/change_password/', change_profile_password, name='change_password')
 ]

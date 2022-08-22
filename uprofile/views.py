@@ -3,12 +3,14 @@ from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.hashers import check_password
+
 from .forms import SignUpForm, SignInForm, UserProfileEdit, UserPasswordChange
+
 
 @login_required(login_url='signin')
 def user_profile(request: HttpRequest) -> HttpResponse:
     return render(request, 'user_profile.html')
+
 
 def signin_view(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
@@ -20,6 +22,7 @@ def signin_view(request: HttpRequest) -> HttpResponse:
         form = SignInForm()
     return render(request, 'signin.html', {'form': form})
 
+
 def signup_view(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -28,7 +31,8 @@ def signup_view(request: HttpRequest) -> HttpResponse:
             return HttpResponseRedirect(reverse_lazy('signin'))
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form} )
+    return render(request, 'signup.html', {'form': form})
+
 
 @login_required(login_url='signin')
 def signout_view(request: HttpRequest) -> HttpResponse:
@@ -42,6 +46,7 @@ def deactivate_user_view(request: HttpRequest) -> HttpResponse:
     request.user.save()
     logout(request)
     return HttpResponseRedirect(reverse_lazy("signin"))
+
 
 @login_required(login_url='signin')
 def user_profile_edit(request: HttpRequest) -> HttpResponse:
@@ -60,6 +65,7 @@ def user_profile_edit(request: HttpRequest) -> HttpResponse:
         form = UserProfileEdit({"first_name": first_name, "last_name": last_name, "email": email,
                                 "gender": gender, "city": city})
     return render(request, 'user_profile_edit.html', {'form': form})
+
 
 @login_required(login_url='signin')
 def change_profile_password(request: HttpRequest) -> HttpResponse:
