@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import make_password
-
 from .models import CustomUserModel
 
 
@@ -86,6 +85,11 @@ class UserPasswordChange(forms.ModelForm):
         password1 = self.cleaned_data['password1']
         if password != password1:
             raise ValidationError('Passwords do not match')
+
+    def clean_password_old(self):
+        password_old = self.cleaned_data['password_old']
+        if not self.instance.check_password(password_old):
+            raise ValidationError("Current password is not correct")
 
     def save(self, user: CustomUserModel):
         password = self.cleaned_data['password']

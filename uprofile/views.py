@@ -70,10 +70,8 @@ def user_profile_edit(request: HttpRequest) -> HttpResponse:
 @login_required(login_url='signin')
 def change_profile_password(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
-        form = UserPasswordChange(request.POST)
-        password_o = request.POST.get('password_old')
-
-        if form.is_valid() and request.user.check_password(password_o) == True:
+        form = UserPasswordChange(request.POST, instance=request.user)
+        if form.is_valid():
             form.save(request.user)
             return HttpResponseRedirect(reverse_lazy('user_profile'))
     else:
