@@ -2,9 +2,10 @@
 
 from django.urls import path
 from uprofile.views import user_profile, signin_view, signout_view,signup_view, deactivate_user_view, user_profile_edit, change_profile_password
+from django.conf import settings
 
 urlpatterns = [
-    path('profile/', user_profile, name='user_profile'),
+    path(settings.LOGIN_URL, user_profile, name='user_profile'),
     path('signin/', signin_view, name='signin'),
     path('signout/', signout_view, name='signout'),
     path('signup/', signup_view, name='signup'),
