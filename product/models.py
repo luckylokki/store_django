@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse_lazy
 
 class Category(models.Model):
     slug = models.SlugField(max_length=64)
@@ -25,3 +25,6 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse_lazy("product_details", kwargs={"slug": self.slug})

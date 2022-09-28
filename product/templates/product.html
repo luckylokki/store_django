@@ -1,59 +1,75 @@
 {% extends "base.html" %}
 {% block title %}Product {{ product.name }}{% endblock %}
 {% block content %}
-</div>
-<section class="vh-100" style="background-color: #eee;">
-  <div class="container py-5 h-100">
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-4">
-        <div class="card text-black">
-          <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
-          <img src="{{ product.image_url }}" alt="{{ product.slug }}" style="width:100%">
-          <div class="card-body">
-            <div class="text-center">
-              <h5 class="card-title">{{  product.name }}</h5>
-            </div>
-            <div>
-              <div class="d-flex justify-content-between">
-                <span>Memory</span><span class="fw-bold">{{ product.memory }}</span>
-              </div>
-              <div class="d-flex justify-content-between">
-                <span>Quantity</span><span class="fw-bold">{{ product.quantity }}</span>
-              </div>
-            {% if not product.available %}
-              <div class="d-flex justify-content-between">
-                <span>Available for purchase</span><span class="fw-bold badge rounded-pill bg-danger">{{ product.available }}</span>
-              </div>
-            {% else %}
-              <div class="d-flex justify-content-between">
-                <span>Available for purchase</span><span class="fw-bold badge rounded-pill bg-success">{{ product.available }}</span>
-              </div>
-            {% endif %}
-                {% if product.discount_available %}
-              <div class="d-flex justify-content-between">
-                <span>Discount</span><span class="fw-bold">{{ product.discount }}</span>
-              </div>
-                {% endif %}
-            </div>
-            <div class="d-flex justify-content-between total font-weight-bold mt-4">
-              <span>Price</span><span class="fw-bold">{{product.price}}</span>
-            </div>
-            <div class="d-flex justify-content-between total font-weight-bold mt-4">
-              <p>{{ product.description }}</p>
-            </div>
-          </div>
-              {% if product.available %}
-          <button style="margin: 5px;" type="button" class="btn btn-dark btn-lg btn-block" data-mdb-ripple-color="dark" onclick="#">
-                Buy
-          </button>
-    {% else %}
-          <button style="margin: 5px;" type="button" class="btn btn-dark btn-lg btn-block" data-mdb-ripple-color="dark" onclick="#" disabled>
-                Buy
-          </button>
-    {% endif %}
-        </div>
-      </div>
     </div>
-  </div>
-</section>
+    <section class="vh-100" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-4">
+                    <div class="card text-black">
+                        <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                        <img src="{{ product.image_url }}" alt="{{ product.slug }}" style="width:100%">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Memory</span><span class="fw-bold">{{ product.memory }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Quantity</span><span class="fw-bold">{{ product.quantity }}</span>
+                                </div>
+                                {% if not product.available %}
+                                    <div class="d-flex justify-content-between">
+                                        <span>Available for purchase</span><span
+                                            class="fw-bold badge rounded-pill bg-danger">{{ product.available }}</span>
+                                    </div>
+                                {% else %}
+                                    <div class="d-flex justify-content-between">
+                                        <span>Available for purchase</span><span
+                                            class="fw-bold badge rounded-pill bg-success">{{ product.available }}</span>
+                                    </div>
+                                {% endif %}
+                                {% if product.discount_available %}
+                                    <div class="d-flex justify-content-between">
+                                        <span>Discount</span><span class="fw-bold">{{ product.discount }}</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                                <span>Price</span><span class="fw-bold">{{ product.price }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                                <p>{{ product.description }}</p>
+                            </div>
+                        </div>
+                        {% if product.available %}
+                            <button style="margin: 5px;" type="button" class="btn btn-dark btn-lg btn-block"
+                                    data-mdb-ripple-color="dark" onclick="#">
+                                Buy
+                            </button>
+                        {% else %}
+                            <button style="margin: 5px;" type="button" class="btn btn-dark btn-lg btn-block"
+                                    data-mdb-ripple-color="dark" onclick="#" disabled>
+                                Buy
+                            </button>
+                        {% endif %}
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_staff %}
+                                                <button style="margin: 5px;"
+                                    onclick="location.href='{% url 'update_product' object.slug %}';"
+                                    class="btn btn-primary btn-md btn-block">Update
+                            </button>
+                            <button style="margin: 5px;"
+                                    onclick="location.href='{% url 'delete_product' object.slug %}';"
+                                    class="btn btn-danger btn-md btn-block">Delete
+                            </button>
+                                {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock content %}

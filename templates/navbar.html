@@ -9,6 +9,17 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home<span class="sr-only"></span></a>
       </li>
+        {% if request.user.is_staff %}
+        <div class="btn-group">
+            <button type="button" class="btn nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Staff
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="{% url "add_category" %}">Add Category</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url "add_product" %}">Add Product</a>
+            </div>
+          </div>
+        {% endif %}
     </ul>
     {% if request.user.is_authenticated %}
     <ul class="navbar-nav justify-content-end">

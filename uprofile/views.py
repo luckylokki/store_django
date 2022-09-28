@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import SignUpForm, SignInForm, UserProfileEdit, UserPasswordChange
 
 
-@login_required(login_url='signin')
+@login_required()
 def user_profile(request: HttpRequest) -> HttpResponse:
     return render(request, 'user_profile.html')
 
@@ -34,13 +34,13 @@ def signup_view(request: HttpRequest) -> HttpResponse:
     return render(request, 'signup.html', {'form': form})
 
 
-@login_required(login_url='signin')
+@login_required()
 def signout_view(request: HttpRequest) -> HttpResponse:
     logout(request)
     return HttpResponseRedirect(reverse_lazy("product_list"))
 
 
-@login_required(login_url='signin')
+@login_required()
 def deactivate_user_view(request: HttpRequest) -> HttpResponse:
     request.user.is_active = False
     request.user.save()
@@ -48,7 +48,7 @@ def deactivate_user_view(request: HttpRequest) -> HttpResponse:
     return HttpResponseRedirect(reverse_lazy("signin"))
 
 
-@login_required(login_url='signin')
+@login_required()
 def user_profile_edit(request: HttpRequest) -> HttpResponse:
     profile = request.user
     if request.method == 'POST':
@@ -67,7 +67,7 @@ def user_profile_edit(request: HttpRequest) -> HttpResponse:
     return render(request, 'user_profile_edit.html', {'form': form})
 
 
-@login_required(login_url='signin')
+@login_required()
 def change_profile_password(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = UserPasswordChange(request.POST, instance=request.user)
