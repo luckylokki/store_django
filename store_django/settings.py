@@ -102,8 +102,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+]
+AUTH_USER_MODEL = 'uprofile.CustomUserModel'
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
